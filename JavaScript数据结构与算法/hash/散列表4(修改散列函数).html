@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>散列表</title>
+	<style type="text/css">
+		body{
+			background-color: rgb(81,147,21);
+			background-color: #519315;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+			
+		function HashTable(){
+			var table = [];
+			var length = 0;
+
+			var ValuePair = function(key,value){
+				this.key = key;
+				this.value = value;
+
+				this.toString = function(){
+					return '['+ this.key + '-' + this.value +']';
+				}
+			}
+
+			this.put = function(key,value){
+				var position = loseloseHashCode(key);
+				
+				if(table[position] == undefined){
+					table[position] = new ValuePair(key,value);
+				}
+				else{
+					var index = ++position;
+					while(table[index] !=undefined){
+						index++;
+					}
+					table[index] = new ValuePair(key,value);
+				}
+				length++;
+
+
+			}
+			this.get = function(key){
+				var position = loseloseHashCode(key);
+
+				if(table[position] !== undefined){
+					if(table[position].key === key){
+						return table[position].value;
+					}
+					else{
+						var index = ++position;
+						while(table[index] === undefined || table[index].key !== key){
+							index++;
+						}
+
+						if(table[index].key === key){
+							return table[index].value;
+						}
+					}
+				}
+			}
+			this.remove = function(key){
+				var position = loseloseHashCode(key);
+
+				if(table[position] !== undefined){
+					if(table[position].key === key){
+						table[position] = undefined;
+						return true;
+					}
+					else{
+						var index = ++position;
+						while(table[index] === undefined || table[index].key !== key){
+							index++;
+						}
+
+						if(table[index].key === key){
+							table[index] = undefined;
+							return true;
+						}
+					}
+
+					length--;
+				}
+				return false;
+			}
+			this.print = function(){
+				console.log('----------------------------------------');
+				for(var i = 0;i<table.length;i++){
+					if(table[i] !== undefined){
+						console.log(i + ": " + table[i]);
+					} 
+				}
+			}
+			this.size = function(){
+				return length;
+			};
+		}
+
+
+		var loseloseHashCode = function(key){
+			var hash = 5381;
+			for(var i =0;i<key.length;i++){
+				hash = hash*33+key.charCodeAt(i);
+			}
+			return hash % 1013;
+		}
+
+
+		var hash = new HashTable();
+		hash.put('Gandalf','gandalf@email.com');
+		hash.put('John','johnsnow@email.com');
+		hash.put('Tyrion','tyrion@email.com');
+		hash.put('Aaron','aaron@email.com');
+		hash.put('Donnie','donnie@email.com');
+		hash.put('Ana','ana@email.com');
+		hash.put('Jonathan','jonathan@email.com');
+		hash.put('Jamie','jamie@email.com');
+		hash.put('Sue','sue@email.com');
+		hash.put('Mindy','mindy@email.com');
+		hash.put('Paul','paul@email.com');
+		hash.put('Nathan','nathan@email.com');
+
+		hash.print();
+		console.log(hash.size());
+
+	</script>
+</body>
+</html>
