@@ -8,7 +8,7 @@ function Dictionary(){
 		return key in items;
 	}
 
-	this.set = function(key,valye){
+	this.set = function(key,value){
 		items[key] = value;
 	}
 

@@ -5,6 +5,7 @@
 </head>
 <body>
 	<script type="text/javascript" src='dictionary.js'></script>
+	<script type="text/javascript" src='queue.js'></script>
 	<script type="text/javascript">
 		
 
@@ -40,6 +41,38 @@
 				}
 				return s;
 			}
+
+			/*
+			广度优先搜索算法：
+
+			1.创建一个队列Q
+			2.将v标注为被发现的(灰色)，并将v入队列Q
+			3.如果Q非空，则运行一下步骤：
+				a.将u从Q中出队列；
+				b.将标注u为被发现的(灰色);
+				c.将u所有未被访问过的邻点(白色)入队列;
+				d.将u标注为已被探索的(黑色);
+			*/
+			var initializeColor = function(){
+				var color = [];
+				for(var i = 0;i<vertices.length;i++){
+					color[vertices[i]] = 'white';
+				}
+				return color;
+			}
+			this.bfs = function(v,callback){
+
+				var color = initializeColor(),
+					queue = new Queue();
+
+				queue.enqueue(v);
+
+				while(!queue.isEmpty()){
+					var u = queue.dequeue(),
+						neighbors = adjList.get(u);
+				}
+
+			}	
 		}
 
 
@@ -64,6 +97,7 @@
 
 		var graphStr = graph.toString();
 		console.log(graphStr);
+
 
 
 
