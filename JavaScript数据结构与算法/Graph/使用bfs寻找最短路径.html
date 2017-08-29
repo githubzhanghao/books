@@ -123,11 +123,13 @@
 						}
 					}
 					color[u] = 'black';
-					if(callback){
-						callback(u);
-					}
-
-
+					// if(callback){
+					// 	callback(u);
+					// }
+				}
+				return {
+					distances:d,
+					predecessors:pred
 				}
 			}
 
