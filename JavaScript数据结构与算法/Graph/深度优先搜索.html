@@ -100,7 +100,6 @@
 					f = [],
 					p = [];
 				time = 0;
-				queue.enqueue(v);
 
 				for(var i =0;i<vertices.length;i++){
 					f[vertices[i]] = 0;
@@ -126,12 +125,12 @@
 				color[u] = 'grey';
 
 				d[u] = ++time;
-
 				var neighbors = adjList.get(u);
 
 				for(var i = 0;i<neighbors.length;i++){
-					var w = neighbors[w];
+					var w = neighbors[i];
 					if(color[w] === 'white'){
+
 						p[w] = u;
 
 						DFSVisit(w,color,d,f,p);
@@ -142,13 +141,13 @@
 
 				f[u] = ++time;
 
-				console.log('explored '+u);
+				console.log('explored ' + u);
 			}
 		}
 
 
 		var graph = new Graph();
-		var myVertices = ['A','B','C','D','E','F','G','H','I'];
+		var myVertices = ['A','B','C','D','E','F'];
 		for(var i = 0;i<myVertices.length;i++){
 			graph.addVertex(myVertices[i]);
 		}
@@ -165,8 +164,8 @@
 		function printNode(value){
 			console.log('Visited vertex : '+value);
 		}
-		var shortestPathA = graph.DFS(myVertices[0]);
-		console.log(shortestPathA)
+		var result = graph.DFS(	);
+		console.log(result);
 
 		/*var shortestPathA = graph.DFS(myVertices[0]);
 		

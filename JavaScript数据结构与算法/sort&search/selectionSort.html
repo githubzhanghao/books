@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>排序算法</title>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		function ArrayList(){
+			var array = [];
+
+			this.insert = function(item){
+				array.push(item);
+			}
+
+			this.toString = function(){
+				console.log(time);
+				return array.join();
+			}
+
+			//冒泡排序
+			var time = 0;//统计次数
+			this.bubbleSort = function(){
+
+				var length = array.length;
+
+				for(var i = 0;i<length;i++){
+					for(var j =0;j<length-1-i;j++){
+						time++;
+						if(array[j] > array[j+1]){
+							swap(j,j+1);
+						}
+					}
+				}
+			}
+			var swap = function(index1,index2){
+				var aux = array[index1];
+				array[index1] = array[index2];
+				array[index2] = aux;
+			}
+
+			//选择排序
+			this.selectionSort = function(){
+
+				var length = array.length,
+					indexMin;
+
+				for(var i = 0;i<length;i++){
+
+					indexMin = i;
+					for(var j=i;j<length;j++){
+						if(array[indexMin]>array[j]){
+							indexMin = j;
+						}
+					}
+
+					if(indexMin !== i){
+						swap(i,indexMin);
+					}
+
+				}
+
+
+			}
+		}
+
+
+		function createNonSortedArray(size){
+			var array = new ArrayList();
+
+			for(var i = size;i>0;i--){
+				array.insert(i);
+			}
+
+			return array;
+		}
+
+
+
+		var array =  createNonSortedArray(9);
+		array.bubbleSort();
+		console.log(array.toString());
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
