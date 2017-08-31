@@ -65,7 +65,7 @@
 				return color;
 			}
 			// initializeColor();
-			this.bfs = function(callback){
+			this.dfs = function(callback){
 
 				var color = initializeColor();
 
@@ -74,67 +74,76 @@
 						dfsVisit(vertices[i],color,callback);
 					}
 				}
-				
-
 			}
 
 			var dfsVisit = function(u,color,callback){
 				color[u] = 'grey';
 				if(callback){
-					callback();
+					callback(u);
 				}
 				var neighbors = adjList.get(u);
 
 				for(var i = 0;i<neighbors.length;i++){
 					var w = neighbors[i];
 					if(color[w] === 'white'){
-						dfsVisit(color[w],color,callback);
+						dfsVisit(w,color,callback);
 					}
 				}
 
+				color[u] = 'black';
 			}
-			this.BFS = function(v,callback){
+			var time = 0;
+			this.DFS = function(v,callback){
 				var color = initializeColor(),
 					queue = new Queue(),
 					d = [],
-					pred = [];
+					f = [],
+					p = [];
+				time = 0;
 				queue.enqueue(v);
 
 				for(var i =0;i<vertices.length;i++){
+					f[vertices[i]] = 0;
 					d[vertices[i]] = 0;
-					pred[vertices[i]] = null;
+					p[vertices[i]] = null;
 				}
 
-				while(!queue.isEmpty()){
-
-					var u = queue.dequeue(),
-						neighbors = adjList.get(u);
-
-					color[u] = 'grey';
-					for(var i = 0;i<neighbors.length;i++){
-
-						var w = neighbors[i];
-						if(color[w] == 'white'){
-							color[w] = 'grey';
-							d[w] = d[u]+1;
-							pred[w] = u;
-
-							queue.enqueue(w);
-						}
-					}
-					color[u] = 'black';
-					if(callback){
-						callback(u);
+				for(i=0;i<vertices.length;i++){
+					if(color[vertices[i]] === 'white'){
+						DFSVisit(vertices[i],color,d,f,p);
 					}
 				}
-				return {
-					distances:d,
-					predecessors:pred
+				return{
+					discovery:d,
+					finished:f,
+					predecessors:p
 				}
 			}
 
+			var DFSVisit = function(u,color,d,f,p){
+				console.log('discovered '+ u);
 
+				color[u] = 'grey';
 
+				d[u] = ++time;
+
+				var neighbors = adjList.get(u);
+
+				for(var i = 0;i<neighbors.length;i++){
+					var w = neighbors[w];
+					if(color[w] === 'white'){
+						p[w] = u;
+
+						DFSVisit(w,color,d,f,p);
+					}
+				}
+
+				color[u] = 'black';
+
+				f[u] = ++time;
+
+				console.log('explored '+u);
+			}
 		}
 
 
@@ -143,16 +152,12 @@
 		for(var i = 0;i<myVertices.length;i++){
 			graph.addVertex(myVertices[i]);
 		}
-		graph.addEdge('A','B');
 		graph.addEdge('A','C');
 		graph.addEdge('A','D');
-		graph.addEdge('C','D');
-		graph.addEdge('C','G');
-		graph.addEdge('D','G');
-		graph.addEdge('D','H');
+		graph.addEdge('B','D');
 		graph.addEdge('B','E');
-		graph.addEdge('B','F');
-		graph.addEdge('E','I');
+		graph.addEdge('C','F');
+		graph.addEdge('F','E');
 
 
 		var graphStr = graph.toString();
@@ -160,8 +165,10 @@
 		function printNode(value){
 			console.log('Visited vertex : '+value);
 		}
+		var shortestPathA = graph.DFS(myVertices[0]);
+		console.log(shortestPathA)
 
-		var shortestPathA = graph.BFS(myVertices[0]);
+		/*var shortestPathA = graph.DFS(myVertices[0]);
 		
 		console.log(shortestPathA);
 
@@ -185,7 +192,7 @@
 			}
 			
 			console.log(s);
-		}
+		}*/
 
 
 

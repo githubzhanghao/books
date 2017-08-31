@@ -65,7 +65,7 @@
 				return color;
 			}
 			// initializeColor();
-			this.bfs = function(v,callback){
+			this.dfs = function(v,callback){
 
 				var color = initializeColor(),
 					queue = new Queue();
@@ -93,7 +93,7 @@
 				}
 
 			}
-			this.BFS = function(v,callback){
+			this.DFS = function(v,callback){
 				var color = initializeColor(),
 					queue = new Queue(),
 					d = [],
@@ -161,7 +161,7 @@
 			console.log('Visited vertex : '+value);
 		}
 
-		var shortestPathA = graph.BFS(myVertices[0]);
+		var shortestPathA = graph.DFS(myVertices[0]);
 		
 		console.log(shortestPathA);
 
