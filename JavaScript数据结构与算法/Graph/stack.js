@@ -23,7 +23,7 @@ function Stack(){
 	this.clear = function(){
 		items = [];
 	}
-	this.print = funciton(){
+	this.print = function(){
 		console.log(items.toString());
-	}
+	};
 }

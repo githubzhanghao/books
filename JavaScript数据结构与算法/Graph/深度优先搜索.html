@@ -6,6 +6,7 @@
 <body>
 	<script type="text/javascript" src='dictionary.js'></script>
 	<script type="text/javascript" src='queue.js'></script>
+	<script type="text/javascript" src='stack.js'></script>
 	<script type="text/javascript">
 		
 
@@ -64,31 +65,31 @@
 				return color;
 			}
 			// initializeColor();
-			this.bfs = function(v,callback){
+			this.bfs = function(callback){
 
-				var color = initializeColor(),
-					queue = new Queue();
+				var color = initializeColor();
 
-				queue.enqueue(v);
-
-				while(!queue.isEmpty()){
-					var u = queue.dequeue(),//先出队列的项
-						neighbors = adjList.get(u);  //获取到这个顶点的边  B／C／D。(AB,AC,AD)
-					color[u] = 'grey';
-					for(var i = 0 ;i < neighbors.length;i++){
-						var w = neighbors[i]; // B／C／D (第一次i=0，与v连接的其他点)
-
-						if(color[w] == 'white'){
-							color[w] = 'grey';
-							queue.enqueue(w);
-						}
+				for(var i = 0;i<vertices.length;i++){
+					if(color[vertices[i]] === 'white'){
+						dfsVisit(vertices[i],color,callback);
 					}
+				}
+				
 
-					color[u] = 'black';
-					if(callback){
-						callback(u);
+			}
+
+			var dfsVisit = function(u,color,callback){
+				color[u] = 'grey';
+				if(callback){
+					callback();
+				}
+				var neighbors = adjList.get(u);
+
+				for(var i = 0;i<neighbors.length;i++){
+					var w = neighbors[i];
+					if(color[w] === 'white'){
+						dfsVisit(color[w],color,callback);
 					}
-
 				}
 
 			}
@@ -160,7 +161,31 @@
 			console.log('Visited vertex : '+value);
 		}
 
+		var shortestPathA = graph.BFS(myVertices[0]);
+		
+		console.log(shortestPathA);
 
+		var fromVertex = myVertices[0];
+
+		for(var i = 1;i<myVertices.length;i++){
+			var toVertex = myVertices[i],//I
+				path = new Stack();
+
+			for(var v = toVertex;v!==fromVertex;v = shortestPathA.predecessors[v]){
+
+				path.push(v);//I
+
+			}
+			path.push(fromVertex);//A
+
+			var s = path.pop();
+			
+			while(!path.isEmpty()){
+				s += ' - '+path.pop();
+			}
+			
+			console.log(s);
+		}
 
 
 
