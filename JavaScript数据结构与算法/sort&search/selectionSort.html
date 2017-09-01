@@ -14,7 +14,7 @@
 			}
 
 			this.toString = function(){
-				console.log(time);
+				console.log('time = ' + time);
 				return array.join();
 			}
 
@@ -45,15 +45,15 @@
 				var length = array.length,
 					indexMin;
 
-				for(var i = 0;i<length;i++){
+				for(var i = 0;i<length-1;i++){//剩下最后一个数的时候，不用作比较了，12345，5就应该是最后一个数了，所以-1
 
 					indexMin = i;
-					for(var j=i;j<length;j++){
+					for(var j=i+1;j<length;j++){ //j=i+1 直接和下一个做比较
 						if(array[indexMin]>array[j]){
 							indexMin = j;
+							time++;
 						}
 					}
-
 					if(indexMin !== i){
 						swap(i,indexMin);
 					}
@@ -77,8 +77,8 @@
 
 
 
-		var array =  createNonSortedArray(9);
-		array.bubbleSort();
+		var array =  createNonSortedArray(5);
+		array.selectionSort();
 		console.log(array.toString());
 	</script>
 </body>
