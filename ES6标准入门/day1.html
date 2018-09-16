@@ -1,0 +1,132 @@
+<html>
+<head>
+	<title>day1</title>
+</head>
+
+<body>
+
+	<pre>
+		var 只有函数作用于 
+		let 具有块级作用域xx
+	</pre>
+
+	<ul>
+		<li>aaa</li>
+		<li>bbb</li>
+		<li>ccc</li>
+		<li>ddd</li>
+	</ul>
+
+	<script type="text/javascript">
+
+		/*let a = 12;
+		let a = 22; *///用let定义一个变量 会报错
+
+		/* */
+		var a = 7;
+		var b = 7.0000000000000001;
+		console.log(a== b);
+
+		/*var lis = document.getElementsByTagName('li');
+		for(var i =0;i<lis.length;i++){
+			lis[i].onclick = function(){
+				alert(i); //全部弹出4
+			}
+		}*/
+
+		/*var lis = document.getElementsByTagName('li');
+		for(var i =0;i<lis.length;i++){
+			(function(i){
+				lis[i].onclick = function(){
+					alert(i); // 弹出 0-4
+				}
+			})(i);
+		}*/
+
+
+		//用let就可以正常使用了
+		//块级作用域其实就是 匿名函数立即执行
+		var lis = document.getElementsByTagName('li');
+		for(let i =0;i<lis.length;i++){
+			lis[i].onclick = function(){
+				alert(i); // 弹出 0-4
+			}
+		}
+
+		/*if(true){
+			let c = 10;
+		}
+		console.log(c);*/
+
+		let d = 'sdfsdf';
+		d = 12;
+		console.log(d);
+
+
+		//const 一旦定义，不允许赋值
+
+		/*const e = 10;
+		e = 12;
+		console.log(e);//报错*/
+
+		let str1 = 'str1',
+			str2 = 'str2';
+
+		var str = `aaaaa${str1}bbbb ${str2}`;
+		console.log(str);
+
+		var [n1,[n2,n3,n4],n5]= [12,[5,6,8],11];
+		console.log(n1,n2,n3,n4,n5);
+
+
+		//解构赋值
+		/*var {time} = {time:'adsfsdfs'};
+		console.log(time);*/
+
+		//如果没有值 则为undefined
+		var {time} = {};
+		console.log(time);//undefined
+		//给默认值
+		var {time} = {time};
+		console.log(time); //undefined
+
+		//给默认值
+		var {time=12} = {};
+		console.log(time); //12
+
+		//给默认值
+		var {time=12} = {time};
+		console.log(time); //12
+
+		//给默认值
+		var {time=12} = {time:14};
+		console.log(time); //14
+
+	</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
