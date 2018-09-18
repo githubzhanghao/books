@@ -6,8 +6,32 @@
     
     <body>
 
-        <canvas id="canvas"></canvas>
-        xddddd
-        <script type="text/javascript" src="assets/bundle.js"></script>
+        <canvas id="canvas" width=600 height=600 style="background:#000;"></canvas>
+        
+        <script type="text/javascript">
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width,
+                  height = canvas.height;
+            
+            ctx.strokeStyle= "#0ff";
+            
+            let offX = width * 0.5 - 5,
+                offY = height * 0.5 - 5;
+
+            for(let i = 0; i < 8 ; i++){
+                ctx.strokeRect( offX - 10 * i, offY - 10 * i , 20 * i + 10, 20 * i + 10 );
+            }
+            
+            offX = width * .5;
+            offY = height * .5;
+            for(let i = 0; i < 18 ; i++){
+                ctx.beginPath();
+                ctx.arc( offX, offY, Math.sqrt((20 * i + 10) * (20 * i + 10)) , 0, Math.PI * 2, true);
+                ctx.closePath();
+                ctx.stroke();
+            }
+
+        </script>
     </body>
 </html>
