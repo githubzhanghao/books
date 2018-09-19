@@ -19,7 +19,7 @@
             let offX = width * 0.5 - 5,
                 offY = height * 0.5 - 5;
 
-            for(let i = 0; i < 8 ; i++){
+            for(let i = 0; i < 18 ; i++){
                 ctx.strokeRect( offX - 10 * i, offY - 10 * i , 20 * i + 10, 20 * i + 10 );
             }
             
@@ -27,7 +27,9 @@
             offY = height * .5;
             for(let i = 0; i < 18 ; i++){
                 ctx.beginPath();
-                ctx.arc( offX, offY, Math.sqrt((20 * i + 10) * (20 * i + 10)) , 0, Math.PI * 2, true);
+                // 这里：我想让圆弧放在正方形的四个角上
+                // 半径 = (正方形的边长 / 2 ) 的平方 再乘以 2  再求根
+                ctx.arc( offX, offY, Math.sqrt(((20 * i + 10) / 2 * (20 * i + 10) / 2) * 2) , 0, Math.PI * 2, true);
                 ctx.closePath();
                 ctx.stroke();
             }
