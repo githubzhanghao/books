@@ -1,0 +1,37 @@
+
+
+<html>
+    <head>
+        <title>绘制圆弧</title>
+    </head>
+    
+    <body>
+
+        <canvas id="canvas" width=600 height=600 style="background:#000;"></canvas>
+        
+        <script type="text/javascript">
+
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width,
+                  height = canvas.height;
+            
+            ctx.strokeStyle= "#0ff";
+            
+            let offX = width * 0.5 - 5,
+                offY = height * 0.5 - 5;
+            
+            // ctx.arc(offX, offY, 130, 0, Math.PI * 2 , true);
+            
+            const startDeg = 0;
+            for(let i = 1; i <= 5 ; i++){
+                ctx.beginPath();
+                ctx.arc(offX, offY, 130, 0, Math.PI * .4 * i , true);
+            }
+
+            ctx.stroke();
+            
+           
+
+        </script>
+    </body>
+</html>
