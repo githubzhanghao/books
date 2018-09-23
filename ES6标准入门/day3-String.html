@@ -1,0 +1,25 @@
+
+<html>
+    <head>
+        <title>raw</title>
+        <link rel="stylesheet" href="./common.css">
+        <script type="text/javascript" src='./common.js'></script>
+    </head>
+    <body>
+
+        <script>
+            let module = 'world !'
+            let str = `ssss ${module}`;
+            w(String.raw`sdd/\n`);
+            w('<br/>');
+            w(String.raw({'raw': 'testt'},1,2,3,4));
+            // console.log(String.raw(str));
+            w('<br/>');
+            
+            let txt = 'helloworld';
+            w(txt.search(/o.?w/g));
+            
+        </script>
+    </body>
+
+</html>
