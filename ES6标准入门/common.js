@@ -5,7 +5,7 @@ function log(s){
 }
 
 function w(s){
-    document.write(s);
+    document.write(JSON.stringify(s));
     document.write('<br/>')
 }
 

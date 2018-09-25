@@ -1,0 +1,37 @@
+
+<html>
+    <head>
+        <title>raw</title>
+        <link rel="stylesheet" href="./common.css">
+        <script type="text/javascript" src='./common.js'></script>
+    </head>
+    <body>
+
+        <script>
+            // let reg = new RegExp('xyz','i');
+            // w(reg.flags);
+            // w(reg.source)
+            // w(reg.sticky)
+            
+            // let reg = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/g;
+
+            // const matchObj = reg.exec('1992-05-05');
+
+            // w(matchObj.groups);
+            // w(matchObj[0])
+            // w(matchObj[1])
+            // w(matchObj[2])
+
+            let reg = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
+
+            let str = '1995-05-05';
+            w(str.replace(reg, '$<day>/$<month>/$<year>'));
+
+
+
+
+            
+        </script>
+    </body>
+
+</html>
