@@ -8,15 +8,49 @@
     <body>
 
         <script>
-            (function () {
-                'use strick';
-                console.log(0o11 === 011);
-            })();
-            
-            (function () {
-                console.log(0o11 === 011);
-            })();
-            
+            // (function () {
+            //     'use strick';
+            //     w(0o11 === 011);
+            // })();
+
+            // (function () {
+            //     w(0o11 === 011);
+            // })();
+
+            // const m = Math;
+            // w(m.sign(-2));
+            // w(m.sign(2));
+            // w(m.sign('-2'));
+            // w(m.sign('2'));
+            // w(m.sign(0));
+            // w(m.sign(-0));
+
+            // 新增运算符
+            // w(2 ** 2);
+            // w(2 ** 3);
+            // w(2 ** 4);
+            // let n = 2;
+            // n **=2; // n = n ** 2;
+            // w(n);
+            // n **= 4;
+            // w(n);
+            // V8引擎中，Math.pow(x,y) 和  x ** y 运算符的结果,
+            // 在特别大数值结果时，两者有细微的差异
+
+            // w(m.signbit(0));
+
+            let x = 1n;
+            let y = 2n;
+            log(x + y); //3n 直接用document.write回返回3,猜测可能进行了一次parseInt
+            /* n 表示 Integer 类型：没有位数限制的整数类型
+            除了不带符号的>>>位运算和+运算 ，其他运算和Number一样
+            因为javascript中的所有数据都以64位的双精度浮点数的形式保存，
+            所以Number类型最高精确到53位(后期详细看下原因)
+            如果 (2n ** 53n + 1n) + 0.5 如果此时返回Integer类型会丢失小数位
+            如果返回Number类型，会因为53位的限制丢失精确度，所以会报错。
+            */
+            log(Number.parseInt(x+y));
+            log(typeof 123n);
 
 
 

@@ -5,7 +5,13 @@ function log(s){
 }
 
 function w(s){
-    document.write(JSON.stringify(s));
+    try{
+        document.write(JSON.stringify(s));
+    }
+    catch {
+        document.write(s);
+    }
+    
     document.write('<br/>')
 }
 
